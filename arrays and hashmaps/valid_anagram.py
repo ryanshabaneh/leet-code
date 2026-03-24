@@ -15,7 +15,10 @@ class Solution:
 
         for i in range(len(s)):
             countS[s[i]] = 1 + countS.get[s[i], 0]
-           i++amajr0.0ajs
+            countT[t[i]] = 1 + countT.get[t[i], 0]
+        return countS == countT
+
+
 '''
 Notes:
 Remember to check length right away
