@@ -29,6 +29,9 @@ Space complexity: O(1) since we have at most  26 different characters.
 Remember to check length right away
 Key Insight You can process both strings in one pass
 
+Counter (collections) = built-in frequency hashmap
+Counter(s) returns {char: count} automatically
+Useful for counting + comparing frequencies (e.g., Counter(s) == Counter(t))
 '''
 
 
