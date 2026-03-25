@@ -1,4 +1,7 @@
-I will book a trip to iceland when I finish blind 75 + needcode 150.
+I will book a trip to iceland when I finish blind 75 + neetcode 150.
+This repo is my leetcode journey
+
+Notes I refer to (theres a notes md in each folder these are just for quicker reference)
 
 A hash function = a machine that turns anything into a number
 
