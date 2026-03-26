@@ -25,7 +25,7 @@ class Solution:
         # We check BEFORE inserting to avoid using the same index twice (i != j)
         prevMap = {}  # {value: index}
         for i, n in enumerate(nums):
-            diff = target - n  # the complement we're looking for
+            diff = target - n  # the complement we're looking for (so essentialy im checking if the complement which matches n is in my dict)
             if diff in prevMap:
                 # prevMap[diff] is always the smaller index since we iterate left to right
                 return [prevMap[diff], i]
