@@ -36,12 +36,40 @@ class Solution:
         #“If a key doesn’t exist, call list() to create a value --> []”
         res = defaultdict(list)
 
+        
+
+        # Every word → convert into a 26-length count array
+        for s in strs:
+            count = [0] * 26
+            for c in s:
+                count[ord(c) - ord('a')] += 1  #converts character → index
+            res[tuple(count)].append(s)
+
+                
+
+
+
 
 
         
 
 
 """
+ord() function returns the integer representing the
+Unicode code point of a specified character
+Example:
+
+ord('a') = 97
+ord('b') = 98
+
+So:
+
+ord('a') - ord('a') = 0
+ord('b') - ord('a') = 1
+ord('c') - ord('a') = 2
+
+maps letters → positions in array
+
         Notes
 ---------------------------
 Counting with defaultdict;
