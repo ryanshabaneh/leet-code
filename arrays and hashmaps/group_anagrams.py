@@ -24,9 +24,65 @@ Output: [[""]]
 
 from collections import defaultdict
 
+'''
+The defaultdict class is a dictionary subclass that simplifies operations involving 
+missing keys by providing a default value automatically, preventing a KeyError from being raised.
+'''
+
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
 
+        #The argument is a function that creates a default value
+        #“If a key doesn’t exist, call list() to create a value --> []”
+        res = defaultdict(list)
+
+
+
         
-        
-        
+
+
+"""
+        Notes
+---------------------------
+Counting with defaultdict;
+
+from collections import defaultdict
+
+count = defaultdict(int)
+
+count["a"] += 1
+count["a"] += 1
+count["b"] += 1
+
+print(count)
+
+First line:
+count["a"] += 1 --> "a" does NOT exist --> Python does: int() → 0
+So it becomes: count["a"] = 0 + 1 → 1
+Second line:
+count["a"] += 1 --> "a" exists (value = 1) --> So: 1 + 1 → 2
+
+Third line: 
+count["b"] += 1 --> "b" does NOT exist --> Python does: int() → 0
+count["b"] = 0 + 1 → 1
+Final result: {'a': 2, 'b': 1}
+
+Grouping with defaultdict:
+
+from collections import defaultdict
+
+groups = defaultdict(list)
+
+groups["a"].append(1)
+groups["a"].append(2)
+groups["b"].append(3)
+
+First line:
+groups["a"].append(1)
+"a" does NOT exist
+Python does: list() → []
+
+So:
+
+groups["a"] = []
+groups["a"].append(1) → [1] and so on.
