@@ -11,7 +11,7 @@ class Solution:
             if num in set:
                 return True
             hashset.add(n)
-            return False
+        return False
 
         # return len(set(nums)) < len(nums) #I got it right!! # shortcut
 

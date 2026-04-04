@@ -44,15 +44,7 @@ class Solution:
             for c in s:
                 count[ord(c) - ord('a')] += 1  #converts character → index
             res[tuple(count)].append(s)
-
-                
-
-
-
-
-
-        
-
+        return list(res.values())
 
 """
 ord() function returns the integer representing the
@@ -72,6 +64,14 @@ maps letters → positions in array
 
         Notes
 ---------------------------
+
+defaultdict(list) is literally a shortform of:
+res = {}
+
+# BUT secretly:
+if key not in res:
+    res[key] = []
+
 Counting with defaultdict;
 
 from collections import defaultdict
@@ -114,3 +114,4 @@ So:
 
 groups["a"] = []
 groups["a"].append(1) → [1] and so on.
+
