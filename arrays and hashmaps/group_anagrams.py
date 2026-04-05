@@ -34,15 +34,10 @@ class Solution:
 
         #The argument is a function that creates a default value
         #“If a key doesn’t exist, call list() to create a value --> []”
-        res = defaultdict(list)
+       
 
         # Every word → convert into a 26-length count array
-        for s in strs:
-            count = [0] * 26
-            for c in s:
-                count[ord(c) - ord('a')] += 1  #converts character → index
-            res[tuple(count)].append(s)
-        return list(res.values())
+      
 
 """ 
 ord() function returns the integer representing the
