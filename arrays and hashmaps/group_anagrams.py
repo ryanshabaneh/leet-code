@@ -36,8 +36,6 @@ class Solution:
         #“If a key doesn’t exist, call list() to create a value --> []”
         res = defaultdict(list)
 
-        
-
         # Every word → convert into a 26-length count array
         for s in strs:
             count = [0] * 26
@@ -46,7 +44,7 @@ class Solution:
             res[tuple(count)].append(s)
         return list(res.values())
 
-"""
+""" 
 ord() function returns the integer representing the
 Unicode code point of a specified character
 Example:
@@ -115,3 +113,12 @@ So:
 groups["a"] = []
 groups["a"].append(1) → [1] and so on.
 
+
+Note: 
+
+from collections import defaultdict
+
+d = defaultdict(list)
+
+d["a"]  # access missing key
+print(d)  # {'a': []}
