@@ -23,6 +23,13 @@ class Solution:
         # without +1, valid indices are 0..n-1, so freq[n] would be out of bounds
         # index 0 is always empty (no number appears 0 times)
 
+        #first thing ill do is build my frequency table
+        for num in nums:
+            count[num] = 1 + count.get(num, 0)
+        #now i want to build freq
+        pass
+ 
+
 
 """
 Approach: Bucket Sort
