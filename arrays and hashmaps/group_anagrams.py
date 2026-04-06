@@ -47,6 +47,9 @@ class Solution:
         # Every word → convert into a 26-length count array
 
 """ 
+
+Time: O (m * n) where M is the number of strings were given and N is avrg length of string
+Space:  O (m * n)
 ord() function returns the integer representing the
 Unicode code point of a specified character
 Example:
