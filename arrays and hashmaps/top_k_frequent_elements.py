@@ -29,7 +29,8 @@ class Solution:
         #now i want to build freq
         for n, c in count.items():
             freq[c].append(n) 
-        
+        res = []
+        for i iin range(len(frequency)):
        
  
 
