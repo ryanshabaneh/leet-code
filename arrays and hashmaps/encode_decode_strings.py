@@ -30,7 +30,12 @@ class Solution:
         pass
 
 """
-okay so first thought is that I can obv combine any words with just string concat 
-so encode is done, but then this would break decoding as i wouldnt know where to split
-my string. So maybe I can introduce a delimiter inbetween each word like a * or a #?
+Concatenating strings loses boundaries, so decoding fails.
+A delimiter seems like a natural fix.
+But a plain delimiter is unsafe because the original strings can also contain that character.
+So I need something unambiguous.
+A good way is to store each string as:
+length + "#" + string
+Then when decoding, I read the length first, 
+and use it to know exactly how many characters belong to the next string.
 """
