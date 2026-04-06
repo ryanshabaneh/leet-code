@@ -27,7 +27,10 @@ class Solution:
         for num in nums:
             count[num] = 1 + count.get(num, 0)
         #now i want to build freq
-        pass
+        for n, c in count.items():
+            freq[c].append(n) 
+        
+       
  
 
 
