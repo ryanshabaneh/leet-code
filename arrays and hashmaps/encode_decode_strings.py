@@ -24,7 +24,9 @@ strs[i] contains any possible characters out of 256 valid ASCII characters.
 class Solution:
 
     def encode(self, strs: List[str]) -> str:
-        pass
+        res = ""
+        for s in strs:
+            res = len(s) + "#" + s
 
     def decode(self, s: str) -> List[str]:
         pass
