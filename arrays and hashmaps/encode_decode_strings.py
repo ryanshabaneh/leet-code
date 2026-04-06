@@ -28,3 +28,9 @@ class Solution:
 
     def decode(self, s: str) -> List[str]:
         pass
+
+"""
+okay so first thought is that I can obv combine any words with just string concat 
+so encode is done, but then this would break decoding as i wouldnt know where to split
+my string. So maybe I can introduce a delimiter inbetween each word like a * or a #?
+"""
