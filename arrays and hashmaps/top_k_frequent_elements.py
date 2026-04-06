@@ -17,25 +17,7 @@ Output: [1]
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = {}
-        freq = [[] for i in range(len(nums) + 1)]
-        # +1 because index = frequency, and max frequency = len(nums)
-        # without +1, valid indices are 0..n-1, so freq[n] would be out of bounds
-        # index 0 is always empty (no number appears 0 times)
 
-        #first thing ill do is build my frequency table
-        for num in nums:
-            count[num] = 1 + count.get(num, 0)
-        #now i want to build freq
-        for n, c in count.items():
-            freq[c].append(n) 
-        res = []
-        for i in range(len(frequency)-1, 0, -1):
-            for n in freq[i]:
-                res.append[n]
-                if len(res) == k:
-                    return res
-       
  
 
 
@@ -62,4 +44,24 @@ Step 3 — walk backwards from the end, collecting numbers until we have k:
 
 Time:  O(n) — counting is O(n), bucket fill is O(n), walk-back is O(n)
 Space: O(n) — count dict + freq array both scale with input size
+
+        count = {}
+        freq = [[] for i in range(len(nums) + 1)]
+        # +1 because index = frequency, and max frequency = len(nums)
+        # without +1, valid indices are 0..n-1, so freq[n] would be out of bounds
+        # index 0 is always empty (no number appears 0 times)
+
+        for num in nums:
+            count[num] = 1 + count.get(num, 0)
+    
+        for n, c in count.items():
+            freq[c].append(n) 
+            
+        res = []
+        for i in range(len(frequency)-1, 0, -1):
+            for n in freq[i]:
+                res.append[n]
+                if len(res) == k:
+                    return res
+       
 """
