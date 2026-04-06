@@ -26,7 +26,7 @@ class Solution:
     def encode(self, strs: List[str]) -> str:
         res = ""
         for s in strs:
-            res = len(s) + "#" + s
+            res = str(len(s)) + "#" + s
 
     def decode(self, s: str) -> List[str]:
         pass
