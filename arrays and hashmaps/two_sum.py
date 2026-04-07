@@ -34,6 +34,11 @@ class Solution:
         # Time:  O(n) — single pass
         # Space: O(n) — hashmap stores up to n entries
         # vs. brute force: O(n²) time, O(1) space (nested loops checking every pair)
+        #
+        # Key pattern: instead of searching for a pair with nested loops, store what
+        # you've seen in a hashmap so you can check for the complement in O(1).
+        # "What do I need?" → look it up. This is the core two-sum pattern and shows
+        # up constantly in array problems.
 
         # -------------------------------------------------------------------
         # WHY WE CHECK BEFORE INSERTING INTO prevMap

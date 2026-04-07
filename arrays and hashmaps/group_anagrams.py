@@ -46,10 +46,16 @@ class Solution:
 
         # Every word → convert into a 26-length count array
 
-""" 
+"""
 
-Time: O (m * n) where M is the number of strings were given and N is avrg length of string
-Space:  O (m * n)
+Time: O(m * n) — m strings each of avg length n (building the count array per word)
+Space: O(m * n) — storing all strings in the result grouped by their signature
+
+Key pattern: when you need to group items that are "equivalent" by some criteria,
+compute a canonical signature for each item and use it as a hashmap key.
+Here the signature is a 26-length character count tuple — all anagrams produce
+the same tuple, so they naturally fall into the same bucket.
+This generalises beyond anagrams: any "group by equivalence" problem likely uses this.
 ord() function returns the integer representing the
 Unicode code point of a specified character
 Example:
