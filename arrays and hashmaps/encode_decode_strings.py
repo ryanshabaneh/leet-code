@@ -36,7 +36,7 @@ class Solution:
             j=i
             while s[j] != "#":
                 j += 1
-            length = int(s[i:j])
+            length = int(s[i:j]) #handles the case len is > 9
             res.append(s[j+1: j+1 + length])
             i = j+1+length
         return res

@@ -16,9 +16,14 @@ class Solution:
         # return len(set(nums)) < len(nums) #I got it right!! # shortcut
 
 '''
-Time Complexity is O(N) I loop through the nums array once
-Space Complexity is O(N), I need to make a new hashset with size up to N
-extra notes
+Time: O(n) — single pass through the array
+Space: O(n) — hashset stores up to n elements
+
+Key pattern: when you need to check "have I seen this before?", reach for a set.
+Sets give O(1) lookup vs O(n) for scanning a list.
+Any "contains duplicate" or "find repeated element" problem likely uses this pattern.
+
+Extra notes:
 If nums is a list: nums = [1, 2, 2, 3, 3, 3]
 Then: set(nums) -> {1, 2, 3}
 if 3 in nums:      # O(n)
