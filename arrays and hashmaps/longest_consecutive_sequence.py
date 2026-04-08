@@ -21,7 +21,9 @@ Example 2:
 Input: nums = [0,3,2,5,4,6,1,1]
 Output: 7
 
-
+Constraints:
+0 <= nums.length <= 1000
+-10^9 <= nums[i] <= 10^9
 '''
 
 class Solution:
