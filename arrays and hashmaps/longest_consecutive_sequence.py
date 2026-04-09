@@ -28,11 +28,7 @@ Constraints:
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        pass
+        
+        hashset = set(nums)
+       
 
-'''
-my initial thought is to like maybe
- add the list to a hashset for o(1) lookup then
-  try and finda number with no n-1 which is a
-   sequence start? but idk what from there
-'''
