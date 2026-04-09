@@ -30,7 +30,7 @@ class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         hashset = set(nums) 
         #transform nums into a set for O(1) look ip
-       
+        longest = 0 #handles the empty case
         for n in hashset:  
         #for each number in nums ill check if that number -1 is in the set
         #if it is not it can be the start of a seq  
@@ -38,7 +38,6 @@ class Solution:
                 length = 1 #1 including start
                 while (n+length) in hashset: #count how many consecutives are in the set
                         length+=1
-                longest = 0 #handles the empty case
                 longest = max(longest, length) #go seq by seq assign largest to longest
         return longest
 
