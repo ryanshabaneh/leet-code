@@ -30,7 +30,7 @@ class Solution:
         for i in range(len(nums)):
             res[i] = prefix
             prefix *= nums[i]
-            postfix = 1
+        postfix = 1 #postfix was not supposed to be in there
         for i in range(len(nums) - 1, -1, -1):
             res[i] *= postfix
             postfix *= nums[i]
