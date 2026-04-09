@@ -28,15 +28,18 @@ Constraints:
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        
-        hashset = set(nums)
+        hashset = set(nums) 
+        #transform nums into a set for O(1) look ip
        
-       for n in hashset:
+        for n in hashset:  
+        #for each number in nums ill check if that number -1 is in the set
+        #if it is not it can be the start of a seq  
             if (n-1) not in hashset:
-                length = 1
-                while (n+length) in hashset:
+                length = 1 #1 including start
+                while (n+length) in hashset: #count how many consecutives are in the set
                         length+=1
-                longest = 0
-                longest = max(longest, length)
+                longest = 0 #handles the empty case
+                longest = max(longest, length) #go seq by seq assign largest to longest
+        return longest
 
 
