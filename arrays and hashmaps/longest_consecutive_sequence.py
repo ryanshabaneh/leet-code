@@ -28,17 +28,43 @@ Constraints:
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        hashset = set(nums) 
-        #transform nums into a set for O(1) look ip
-        longest = 0 #handles the empty case
-        for n in hashset:  
-        #for each number in nums ill check if that number -1 is in the set
-        #if it is not it can be the start of a seq  
-            if (n-1) not in hashset:
-                length = 1 #1 including start
-                while (n+length) in hashset: #count how many consecutives are in the set
-                        length+=1
-                longest = max(longest, length) #go seq by seq assign largest to longest
+        hashset = set(nums)
+        longest = 0
+        for n in hashset:
+            if (n-1) not in hashset:  # only start counting from sequence beginnings
+                length = 1            # count includes the start number itself
+                while (n + length) in hashset:
+                    length += 1
+                longest = max(longest, length)
         return longest
+
+"""
+Approach: HashSet + Sequence Start Detection
+
+Key insight: only start counting from numbers that have no left neighbor (n-1 not in set).
+Without this check, you'd recount sequences from every element — e.g. for [2,3,4,5]
+you'd count from 2, then again from 3, then again from 4, etc. The n-1 check ensures
+you only count each sequence once, from its true starting point.
+
+Why convert to a set first?
+    Checking "is n+1 in nums?" on a list is O(n) — you'd scan the whole list each time.
+    A set gives O(1) lookup, which is what makes the overall algorithm O(n).
+
+Why iterate over hashset instead of nums?
+    Duplicates — if nums has [1,1,2,3], iterating over nums would process 1 twice.
+    The set deduplicates automatically so each unique number is only checked once.
+
+Why start length at 1?
+    The starting number itself counts as part of the sequence.
+    If no consecutive neighbors exist, the sequence is just that one number (length = 1).
+
+Why use a while loop (not a for loop) for counting?
+    We don't know in advance how long the sequence is — we keep going until
+    the next number isn't in the set. A while loop handles this naturally.
+
+Time:  O(n) — each number is added to the set once, and each number is visited
+       at most twice (once in the outer for loop, once inside a while loop chain).
+Space: O(n) — the hashset stores up to n unique elements.
+"""
 
 
