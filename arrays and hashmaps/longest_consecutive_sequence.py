@@ -36,6 +36,7 @@ class Solution:
                 length = 1
                 while (n+length) in hashset:
                         length+=1
-                
+                longest = 0
+                longest = max(longest, length)
 
 
