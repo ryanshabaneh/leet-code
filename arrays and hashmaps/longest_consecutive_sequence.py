@@ -31,4 +31,11 @@ class Solution:
         
         hashset = set(nums)
        
+       for n in hashset:
+            if (n-1) not in hashset:
+                length = 1
+                while (n+length) in hashset:
+                        length+=1
+                
+
 
