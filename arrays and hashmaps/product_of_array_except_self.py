@@ -65,6 +65,15 @@ Why set res[i] BEFORE updating prefix/postfix?
 
 Time:  O(n) — two separate passes, each O(n)
 Space: O(1) extra — only two variables (prefix, postfix), output array doesn't count
+
+Backwards for loop — range(len(nums) - 1, -1, -1):
+    range(start, stop, step)
+    start = len(nums) - 1  → last valid index (if len=4, indices are 0-3, so start at 3)
+    stop  = -1             → stop is exclusive, so -1 means we go all the way down to index 0
+    step  = -1             → walk backwards
+
+    Common mistake: using range(len(nums), -1, -1) — that starts at len(nums) which is
+    out of bounds. Always len(nums) - 1 when you want to start at the last element.
 """
 
 
