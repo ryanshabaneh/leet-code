@@ -25,4 +25,17 @@ s consists of only printable ASCII characters.
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        pass
+        start, end = 0, len(s) - 1
+
+'''
+my first thought is i can either make a new 
+string and loop backwards then compare 
+the strings but this is o(n) space 
+(id convert entire string to lower first but idk if
+ this would work bc niumbers can be there), 
+ second thought is have 2 pointers one at the 
+ start and one at the end then each position 
+ must match so first char == second char 2nd matches 
+ second last and loop until start>end
+
+'''
