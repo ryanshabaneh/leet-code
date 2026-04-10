@@ -12,6 +12,7 @@ Example 1:
 Input: s = "Was it a car or a cat I saw?"
 Output: true
 Explanation: "wasitacaroracatisaw" is a palindrome.
+note also something like "###racecar  **#" counts as a palindrome
 
 Example 2:
 Input: s = "tab a cat"
@@ -76,10 +77,3 @@ Space: O(n) — s.lower() creates a new string (could avoid with .lower() per ch
 Key pattern: two pointers moving inward is the go-to for palindrome checks
 and any problem where you're comparing elements from both ends of a sequence.
 """
-
-
-        
-
-
-
-
