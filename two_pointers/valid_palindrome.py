@@ -29,19 +29,18 @@ class Solution:
         start, end = 0, len(s) - 1
 
         while start < end:
-            if s[start].isalnum() == False:
+            while start < end and s[start].isalnum() == False:
                 start += 1
-            if s[end].isalnum() == False:
+            while start < end and s[end].isalnum() == False:
                 end -= 1
-            
+            if s[start]!=s[end]:
+                return False
+            start += 1
+            end -= 1
+        return True
 
 
-
-            "rac e car"
-
-            s[start] = "r"
-            s[end] = "r"
-
+        
 
 
 
