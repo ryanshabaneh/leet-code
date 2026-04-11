@@ -23,4 +23,15 @@ from typing import List
 
 
 def three_sum(nums: List[int]) -> List[List[int]]:
-    pass
+    res = []
+    nums.sort()
+
+    for i, x1 in enumerate(nums):
+        if x1 > 0:
+            break #impossible to get 0 since x1+x2 = -x1 if x1 is pos x2, x3 are post cant sum to zero
+        if i > 0 and x1 == nums[i-1]:
+            continue
+            # skip the SECOND duplicate, not the first — the first already found all triplets with this value
+            # if first uses second this would work but if the second also needs the first wouldnt work
+            #checking i > 0 avoids nums[-1] (last element) on the first iteration
+            
