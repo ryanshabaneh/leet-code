@@ -26,5 +26,34 @@
 from typing import List
 
 
-def two_sum_ii(numbers: List[int], target: int) -> List[int]:
-    pass
+def two_sum_ii(nums: List[int], target: int) -> List[int]:
+    l, r = 0, len(nums) - 1
+    while l < r:
+        sum = nums[l] + nums[r]
+        if sum > target:
+            r -= 1      # sum too big — move r left to get a smaller value
+        elif sum < target:
+            l += 1      # sum too small — move l right to get a bigger value
+        else:
+            return [l+1, r+1]   # +1 because problem uses 1-indexed positions
+    return []
+
+"""
+Approach: Two Pointers
+
+Key insight: because the array is sorted, we know exactly which direction
+to move when the sum is wrong. Too big → shrink from the right. Too small
+→ grow from the left. This eliminates the need for a hashmap entirely.
+
+Why not use a hashmap like original Two Sum?
+    The constraint says O(1) space — no hashmap allowed.
+    But we don't need one: the sorted order gives us directional information
+    that lets us home in on the answer without storing anything.
+
+Why does this work in O(n)?
+    Each step either moves l right or r left — they can only move toward
+    each other, so the total number of steps is at most n.
+
+Time:  O(n)
+Space: O(1)
+"""
