@@ -34,4 +34,8 @@ def three_sum(nums: List[int]) -> List[List[int]]:
             # skip the SECOND duplicate, not the first — the first already found all triplets with this value
             # if first uses second this would work but if the second also needs the first wouldnt work
             #checking i > 0 avoids nums[-1] (last element) on the first iteration
+        l,r = i+1, len(nums) - 1
+        while l<r:
+            if nums[l]+nums[r] == -x1:
+                res.extend([x1,nums[l],nums[r]])
             
