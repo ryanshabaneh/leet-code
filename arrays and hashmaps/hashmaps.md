@@ -242,6 +242,126 @@ When Python resizes, it recomputes positions using the new table size, which spr
 
 ---
 
+---
+
+## Patterns from Problems Solved
+
+### 1. Complement lookup (Two Sum)
+When searching for a pair that satisfies a condition, store what you've already seen in a hashmap and check for the complement in O(1) instead of using nested loops.
+
+```python
+# "what do I need?" → look it up
+diff = target - n
+if diff in seen:
+    return [seen[diff], i]
+seen[n] = i
+```
+
+> Check **before** inserting so you can't match a number with itself.
+
+---
+
+### 2. "Have I seen this?" → use a set (Contains Duplicate)
+Any time you need to detect repetition or membership, a set gives O(1) lookup vs O(n) for scanning a list.
+
+```python
+seen = set()
+for n in nums:
+    if n in seen:
+        return True
+    seen.add(n)
+```
+
+---
+
+### 3. Frequency map (Valid Anagram, Top K Frequent)
+To compare or rank items by how often they appear, build a `{value: count}` map.
+
+```python
+count[n] = 1 + count.get(n, 0)
+# or: count = Counter(nums)
+```
+
+Two strings are anagrams if and only if their frequency maps are equal.
+
+---
+
+### 4. Canonical key → group equivalents (Group Anagrams)
+When you need to group items that are "the same" under some transformation, compute a canonical signature and use it as a hashmap key.
+
+```python
+# signature = sorted tuple of char counts
+count = [0] * 26
+for c in word:
+    count[ord(c) - ord('a')] += 1
+groups[tuple(count)].append(word)
+```
+
+Generalizes to any "group by equivalence" problem.
+
+---
+
+### 5. Bucket sort when range is bounded (Top K Frequent)
+If values are bounded by input size (e.g., max frequency ≤ n), use an array of buckets indexed by value to sort in O(n) instead of O(n log n).
+
+```python
+freq = [[] for _ in range(len(nums) + 1)]  # index = frequency
+for n, c in count.items():
+    freq[c].append(n)
+# walk backwards to get highest-frequency first
+```
+
+---
+
+### 6. Prefix × postfix without division (Product Except Self)
+To compute "product of everything except index i", make two passes — one left-to-right (prefix) and one right-to-left (postfix) — and multiply them together in place.
+
+```python
+res = [1] * n
+prefix = 1
+for i in range(n):
+    res[i] = prefix
+    prefix *= nums[i]
+
+postfix = 1
+for i in range(n - 1, -1, -1):
+    res[i] *= postfix
+    postfix *= nums[i]
+```
+
+> Always set `res[i]` **before** updating the running product — you want everything *except* `nums[i]`.
+
+---
+
+### 7. Length-prefixed encoding (Encode & Decode Strings)
+When serializing a list of strings into one string, prefix each with its length so you can decode unambiguously, even if the strings contain the delimiter.
+
+```python
+# encode: "5#Hello5#World"
+res += str(len(s)) + "#" + s
+
+# decode: read the number before "#", then grab exactly that many chars
+length = int(s[i:j])
+res.append(s[j+1: j+1+length])
+```
+
+---
+
+### 8. Set + sequence start detection (Longest Consecutive Sequence)
+To find the longest sequence in O(n), convert to a set for O(1) lookups, then only start counting from numbers with no left neighbor (`n-1 not in set`). This ensures each sequence is counted once.
+
+```python
+num_set = set(nums)
+for n in num_set:
+    if n - 1 not in num_set:   # sequence start
+        length = 1
+        while n + length in num_set:
+            length += 1
+        longest = max(longest, length)
+```
+
+---
+
 ## Important correction about "buckets"
 
 A common teaching model shows this:
