@@ -36,6 +36,17 @@ def three_sum(nums: List[int]) -> List[List[int]]:
             #checking i > 0 avoids nums[-1] (last element) on the first iteration
         l,r = i+1, len(nums) - 1
         while l<r:
-            if nums[l]+nums[r] == -x1:
-                res.extend([x1,nums[l],nums[r]])
+            threesum = x1 + nums[l]+nums[r]
+            if threesum>0:
+                r -= 1
+            elif threesum < 0:
+                l += 1
+            else:
+                res.append([x1,nums[l],nums[r]])
+                l+=1
+                while nums[l] == nums[l-1]:
+                    l+=1
+        return res
+
+
             
