@@ -44,7 +44,7 @@ def three_sum(nums: List[int]) -> List[List[int]]:
             else:
                 res.append([x1,nums[l],nums[r]])
                 l+=1
-                while nums[l] == nums[l-1]:
+                while nums[l] == nums[l-1] and l<r:
                     l+=1
         return res
 
