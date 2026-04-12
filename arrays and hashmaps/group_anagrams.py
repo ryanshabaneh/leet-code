@@ -35,14 +35,14 @@ class Solution:
         #The argument is a function that creates a default value
         #“If a key doesn’t exist, call list() to create a value --> []”
        
-       res = defaultdict(list)
+        res = defaultdict(list)
 
         for w in strs:
             count = [0] * 26
             for c in w:
                count[ord(c) - ord("a")] +=1
             res[tuple(count)].append(w)
-        return list(res.values)
+        return list(res.values())
 
         # Every word → convert into a 26-length count array
 

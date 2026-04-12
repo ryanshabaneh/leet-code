@@ -8,9 +8,9 @@ class Solution:
     def hasDuplicate(self, nums: List[int]) -> bool:
         hashset = set()
         for num in nums:
-            if num in set:
+            if num in hashset:
                 return True
-            hashset.add(n)
+            hashset.add(num)
         return False
 
         # return len(set(nums)) < len(nums) #I got it right!! # shortcut
