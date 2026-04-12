@@ -14,7 +14,7 @@
 # Constraints:
 # - 2 <= height.length <= 1000
 # - 0 <= height[i] <= 1000
-
+from typing import List
 def max_area(heights: List[int]) -> int:
     l, r = 0, len(heights) - 1  # start at both ends — maximizes width on the first check
     res = 0
