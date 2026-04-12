@@ -1,6 +1,22 @@
 # 11. Container With Most Water
-# https://leetcode.com/problems/container-with-most-water/
-# Difficulty: Medium
+# You are given an integer array heights where heights[i] represents the height of the ith bar.
+# You may choose any two bars to form a container.
+# Return the maximum amount of water a container can store.
 #
-# Given n vertical lines represented by array height, find two lines that together
-# with the x-axis form a container that holds the most water.
+# Example 1:
+# Input: height = [1,7,2,5,4,7,3,6]
+# Output: 36
+#
+# Example 2:
+# Input: height = [2,2,2]
+# Output: 4
+#
+# Constraints:
+# - 2 <= height.length <= 1000
+# - 0 <= height[i] <= 1000
+
+from typing import List
+
+
+def max_area(heights: List[int]) -> int:
+    pass
