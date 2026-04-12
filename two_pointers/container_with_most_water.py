@@ -15,9 +15,6 @@
 # - 2 <= height.length <= 1000
 # - 0 <= height[i] <= 1000
 
-from typing import List
-
-
 def max_area(heights: List[int]) -> int:
     l, r = 0, len(heights) - 1  # start at both ends — maximizes width on the first check
     res = 0
@@ -34,7 +31,9 @@ def max_area(heights: List[int]) -> int:
         # or gets worse — can never improve. So it's pointless.
         # Moving the shorter pointer inward: width shrinks but there's at least a CHANCE
         # of finding a taller bar that increases the area.
-        # If equal, it doesn't matter which we move — move l by convention.
+        # If equal, it doesn't matter which we move — both are the same height cap,
+        # width shrinks either way, and the other will get skipped on the next iteration.
+        # Move l by convention.
         if heights[l] <= heights[r]:
             l += 1
         else:
