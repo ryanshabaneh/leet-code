@@ -38,4 +38,68 @@ return True
 
 ---
 
-*More patterns coming as problems are solved (3Sum, Container With Most Water, ...)*
+### 2. Inward pointers on sorted array — find a pair (Two Sum II)
+When the array is sorted, you can find a pair summing to a target in O(n). Too big → shrink from the right. Too small → grow from the left. No hashmap needed.
+
+```python
+l, r = 0, len(nums) - 1
+while l < r:
+    s = nums[l] + nums[r]
+    if s > target:
+        r -= 1
+    elif s < target:
+        l += 1
+    else:
+        return [l + 1, r + 1]  # 1-indexed
+```
+
+> This only works because the array is sorted — a larger index means a larger value, so pointer direction is meaningful.
+
+---
+
+### 3. Outer loop + inner two pointers — find triplets (3Sum)
+Fix one element with an outer loop, then reduce to a two-pointer pair search on the rest. Sort first to enable both the pointer logic and duplicate skipping.
+
+```python
+nums.sort()
+for i, x1 in enumerate(nums):
+    if x1 > 0:
+        break  # sorted: everything to the right is also positive, can't sum to 0
+    if i > 0 and x1 == nums[i - 1]:
+        continue  # skip duplicate x1 values — first occurrence already found all triplets
+    l, r = i + 1, len(nums) - 1
+    while l < r:
+        total = x1 + nums[l] + nums[r]
+        if total > 0:
+            r -= 1
+        elif total < 0:
+            l += 1
+        else:
+            res.append([x1, nums[l], nums[r]])
+            l += 1
+            while l < r and nums[l] == nums[l - 1]:  # skip duplicate l values
+                l += 1
+```
+
+> `l < r` must come before `nums[l] == nums[l-1]` in the duplicate skip — Python short-circuits, so if `l >= r` it never touches `nums[l]` and avoids index out of bounds.  
+> You only need to skip duplicates for `l` explicitly — `r` adjusts naturally from the `total > 0` branch.
+
+---
+
+### 4. Inward pointers — maximize area (Container With Most Water)
+Start at both ends (maximum width) and move the shorter pointer inward. Moving the taller one can never improve the area — width shrinks and the height cap stays the same or gets worse.
+
+```python
+l, r = 0, len(heights) - 1
+res = 0
+while l < r:
+    area = min(heights[l], heights[r]) * (r - l)
+    res = max(res, area)
+    if heights[l] <= heights[r]:
+        l += 1  # l is shorter (or equal) — only chance of improvement is moving it
+    else:
+        r -= 1
+```
+
+> This doesn't check every pair — it skips pairs that are provably worse. When you move a pointer, all pairs involving the old position with smaller widths are skipped, but they're all capped at the same short height with less width, so they can never beat what you already checked.  
+> When heights are equal, it doesn't matter which pointer you move — both are the same height cap, and the other gets skipped on the next iteration anyway.
