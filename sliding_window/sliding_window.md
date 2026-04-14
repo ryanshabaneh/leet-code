@@ -11,6 +11,35 @@ The algorithm is always:
 
 ---
 
+## Why it's O(n) — "One best candidate per r"
+
+The algorithm does not check every valid substring. It checks **one best candidate per r**. That's why it's O(n) instead of O(n²).
+
+At a fixed index `r`, there are many substrings ending there:
+
+```
+s = "abcd", r = 3
+"d"     (l=3)
+"cd"    (l=2)
+"bcd"   (l=1)
+"abcd"  (l=0)  ← 4 candidates
+```
+
+For a *longest* problem, the best one is always the longest valid one. So you don't need the rest.
+
+**What sliding window finds at each r:** the longest valid substring ending at r — by keeping `l` as far left as possible, only shrinking when forced.
+
+After fixing any violations, `l` is the smallest index that makes `[l...r]` valid. That means `[l...r]` is the longest valid window ending at `r`. Every other candidate `[l+1...r]`, `[l+2...r]`, etc. is strictly shorter — already worse.
+
+**The guarantee:**
+- If the true answer ends at index `r`
+- Then it's the longest valid substring ending at `r`
+- And that's exactly what sliding window keeps
+
+**One-line takeaway:** Sliding window compresses O(n²) candidates into O(n) by keeping only the winner at each endpoint.
+
+---
+
 ## Patterns from Problems Solved
 
 ### 1. Variable-size window with a validity constraint (set)
