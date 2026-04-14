@@ -4,6 +4,11 @@ A technique where you maintain a window (a subarray or substring) defined by two
 
 Use it when the problem asks about a contiguous subarray or substring that satisfies some condition (max sum, longest without repeats, etc.).
 
+The algorithm is always:
+1. **Greedily grow right** as long as the window is valid
+2. **Shrink from left** only when forced to (constraint violated)
+3. **Record the max** at every step
+
 ---
 
 ## Patterns from Problems Solved
