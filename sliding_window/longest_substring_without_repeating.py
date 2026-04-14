@@ -33,5 +33,10 @@ class Solution:
         l, longest = 0, 0
 
         for r in range(len(s)):
+            while s[r] in charSet:
+                charSet.remove(s[l])
+                l=l+1
+            charSet.add(s[r])
             pass
+            
 
