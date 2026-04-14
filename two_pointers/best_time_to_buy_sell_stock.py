@@ -34,7 +34,10 @@ class Solution:
 
         while r<len(prices)-1:
             if prices[r]>prices[l]:
-                profit = prices[r]-prices[l]
+                sum = prices[r]-prices[l]
+                profit = max(sum, profit)
+            else:
+                pass
             
 
 
