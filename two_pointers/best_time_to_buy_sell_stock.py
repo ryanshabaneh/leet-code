@@ -37,7 +37,10 @@ class Solution:
                 sum = prices[r]-prices[l]
                 profit = max(sum, profit)
             else:
-                pass
+                l = r
+            r += 1
+
+
             
 
 
