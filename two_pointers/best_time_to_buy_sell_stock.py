@@ -29,15 +29,10 @@ from typing import List
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        pass
+        profit = 0
+        l,r = 0, len(prices)-1
+
+        while l<r:
+            
 
 
-'''
-
-initial thoughts this shouldnt be sliding window, do 2p, l is buy day, r is sell day if r-l>0 
-we can make profit set that as out curr max
-
-note though if prices[r]>price[l] - profit
-            if prices[r]<price[l] maybe set l to r for a cheaper buy then increment r to see sell
-
-'''
