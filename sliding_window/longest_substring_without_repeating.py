@@ -37,6 +37,6 @@ class Solution:
                 charSet.remove(s[l])
                 l=l+1
             charSet.add(s[r])
-            pass
-            
+            longest = max(longest, r-l + 1)
+        return longest
 
