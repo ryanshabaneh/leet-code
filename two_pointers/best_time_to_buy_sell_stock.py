@@ -30,7 +30,7 @@ from typing import List
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         profit = 0
-        l,r = 0, len(prices)-1
+        l,r = 0, 1
 
         while l<r:
             
