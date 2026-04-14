@@ -103,3 +103,23 @@ while l < r:
 
 > This doesn't check every pair — it skips pairs that are provably worse. When you move a pointer, all pairs involving the old position with smaller widths are skipped, but they're all capped at the same short height with less width, so they can never beat what you already checked.  
 > When heights are equal, it doesn't matter which pointer you move — both are the same height cap, and the other gets skipped on the next iteration anyway.
+
+---
+
+### 5. Forward pointers — track minimum buy day (Best Time to Buy and Sell Stock)
+Both pointers start at the left and move rightward. Order matters here (must buy before sell), so you can't shrink from both ends. `l` tracks the cheapest price seen so far; `r` scans every potential sell day.
+
+```python
+l, r = 0, 1
+profit = 0
+while r < len(prices):
+    if prices[r] > prices[l]:           # profitable: try selling today
+        profit = max(profit, prices[r] - prices[l])
+    else:                               # found a cheaper buy day
+        l = r                           # update buy pointer to new minimum
+    r += 1
+return profit
+```
+
+> Key insight: you don't need to compare every pair. `l` compresses all previous buy options into one number — the minimum so far. Once you find a cheaper price, everything before it is irrelevant as a buy day.  
+> **When to use forward vs inward pointers:** if the problem has an ordering constraint (buy before sell, left index before right), both pointers start left and march forward. If order doesn't matter (any two elements), shrink from both ends.
