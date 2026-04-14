@@ -58,7 +58,7 @@ Why not start r at the end and shrink inward?
 Key insight: don't need to compare every pair
     l compresses all previous buy options into one number — the minimum so far.
     Once you find a price cheaper than l, everything before it is irrelevant as
-    a buy day. So you're not skipping cases — you're eliminating provably worse ones.
+    a buy day. So you're not skipping cases — you're eliminating probably worse ones.
 
     [10, 1, 5, 6, 7, 1]:
         day 1 (price 1): new minimum → l moves here
@@ -70,4 +70,9 @@ Key insight: don't need to compare every pair
 
 Time:  O(n) — single pass, each element visited once
 Space: O(1) — only two pointers and a max variable
+
+think For every r:
+
+“what is the cheapest price before me?”
+l = index of cheapest price so far
 """
