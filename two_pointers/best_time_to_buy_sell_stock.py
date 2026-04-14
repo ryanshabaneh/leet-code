@@ -32,7 +32,7 @@ class Solution:
         profit = 0
         l,r = 0, 1
 
-        while l<r:
+        while r<len(prices)-1:
             
 
 
