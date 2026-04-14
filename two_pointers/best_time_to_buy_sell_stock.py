@@ -33,6 +33,8 @@ class Solution:
         l,r = 0, 1
 
         while r<len(prices)-1:
+            if prices[r]>prices[l]:
+                profit = prices[r]-prices[l]
             
 
 
