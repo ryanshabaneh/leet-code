@@ -45,7 +45,7 @@ class Solution:
                 l += 1
             # now s[r] is safe to add — no duplicates in the window
             charSet.add(s[r])
-
+ 
             # r - l + 1 = current window size (inclusive on both ends)
             # e.g. l=0, r=2 → 3 chars (indices 0, 1, 2)
             longest = max(longest, r - l + 1)
