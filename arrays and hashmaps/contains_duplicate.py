@@ -30,3 +30,4 @@ if 3 in nums:      # O(n)
 if 3 in set(nums): # O(1)
 Sets use hashing (like dicts), so lookup is fast
 '''
+#Re-solved count: 1

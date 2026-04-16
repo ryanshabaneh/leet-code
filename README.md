@@ -24,3 +24,10 @@ arr[7] = [("Ryan", "123-456"), ("Bob", "555-000")]
 string → yes
 int → yes
 list → ❌ (can change, breaks system)
+
+
+delete best time to buy and sell stocks in arrays and hashmaps its a sliding window problem already solved there
+
+add time complexity to encode decode
+
+add resolved count to each
