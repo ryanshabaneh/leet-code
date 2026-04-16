@@ -26,7 +26,7 @@ class Solution:
         l = 0
         res = 0
         count = {} 
-        maxfreq = 0 #tracks max freq of a char in every window
+        maxfreq = 0 # tracks max freq of a char in every window
 
         for r in range(len(s)):
             count[s[r]] = 1 + count.get(s[r],0)
@@ -34,3 +34,7 @@ class Solution:
             if (r-l+1) - maxf > k:
                 count[s[l]] -= 1
         
+        # Correctness guarantee: r visits every position in the string.
+        # At each r, l is as far left as possible while the window is still valid.
+        # So at every step we check the longest valid window ending at r.
+        # Since every right endpoint is checked, we can't miss the answer.
