@@ -31,7 +31,7 @@ class Solution:
         for r in range(len(s)):
             count[s[r]] = 1 + count.get(s[r],0)
             maxfreq = max(maxfreq, count[s[r]])
-            if (r-l+1) - maxf > k:
+            while (r-l+1) - maxf > k:
                 count[s[l]] -= 1
         
         # Correctness guarantee: r visits every position in the string.
