@@ -26,8 +26,12 @@ class Solution:
         result = 0
         l = 0
         count = {}
-        maxFreq = {}
+        maxFreq = 0
         
+        for r in range(len(s)):
+            count[s[r]] = 1 + count.get(s[r], 0)
+
+
         # Correctness guarantee: r visits every position in the string.
         # At each r, l is as far left as possible while the window is still valid.
         # So at every step we check the longest valid window ending at r.
