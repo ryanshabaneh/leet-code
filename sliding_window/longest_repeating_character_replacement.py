@@ -31,6 +31,9 @@ class Solution:
         for r in range(len(s)):
             count[s[r]] = 1 + count.get(s[r], 0)
             maxf = max(maxf, count[s[r]])
+            while (r - l + 1) - maxf > k:
+                pass
+
 
 
         # Correctness guarantee: r visits every position in the string.
