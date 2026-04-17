@@ -30,6 +30,7 @@ class Solution:
         
         for r in range(len(s)):
             count[s[r]] = 1 + count.get(s[r], 0)
+            maxf = max(maxf, count[s[r]])
 
 
         # Correctness guarantee: r visits every position in the string.
