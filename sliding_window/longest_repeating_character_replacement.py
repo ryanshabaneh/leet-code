@@ -23,8 +23,10 @@
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        pass
-
+        result = 0
+        l = 0
+        count = {}
+        maxFreq = {}
         
         # Correctness guarantee: r visits every position in the string.
         # At each r, l is as far left as possible while the window is still valid.
