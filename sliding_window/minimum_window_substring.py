@@ -27,6 +27,7 @@
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        res = 0
         if t == "":
             return ""
         countT, window = {}, {}
@@ -42,6 +43,7 @@ class Solution:
             if c in countT and window[c] == countT[c]:
                 have += 1
             while have == need:
+                res = min(res, r - l + 1)
                 pass
 
         
