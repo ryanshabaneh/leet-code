@@ -45,7 +45,11 @@ class Solution:
             if c in countT and window[c] == countT[c]:
                 have += 1
             while have == need:
-                pass
+                if (r - l + 1 ) < resLen:
+                    resLen = r - l + 1
+                    res = [l,r]
+                # pop from the left of window map
+                window[s[l]] -= 1
 
         
 
