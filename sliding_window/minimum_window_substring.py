@@ -34,5 +34,7 @@ class Solution:
         for c in t:
             countT[c] = 1 + countT.get(c, 0)
             
-        have, need = 0, len(t)
+        have, need = 0, len(countT) 
+        for r in range(len(s)):
+            pass
 
