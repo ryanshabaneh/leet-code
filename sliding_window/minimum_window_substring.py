@@ -45,11 +45,7 @@ class Solution:
             if c in countT and window[c] == countT[c]:
                 have += 1
             while have == need:
-                res = min(res, r - l + 1)
-                window[c] -= 1
-                l += 1
-                if window[c] != countT[c]:
-                    break
+                pass
 
         
 
