@@ -36,5 +36,13 @@ class Solution:
             
         have, need = 0, len(countT) 
         for r in range(len(s)):
-            pass
+            c = s[r]
+            window[c] = 1 + window.get(c, 0)
+
+            if c in countT and window[c] == countT[c]:
+                have += 1
+            while have == need:
+                pass
+
+        
 
