@@ -27,7 +27,7 @@
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        res = 0
+
         if t == "":
             return ""
         countT, window = {}, {}
@@ -36,6 +36,8 @@ class Solution:
             countT[c] = 1 + countT.get(c, 0)
             
         have, need = 0, len(countT) 
+        res, resLen = [-1, -1], float("infinity")
+        l = 0
         for r in range(len(s)):
             c = s[r]
             window[c] = 1 + window.get(c, 0)
@@ -44,7 +46,10 @@ class Solution:
                 have += 1
             while have == need:
                 res = min(res, r - l + 1)
-                pass
+                window[c] -= 1
+                l += 1
+                if window[c] != countT[c]:
+                    break
 
         
 
