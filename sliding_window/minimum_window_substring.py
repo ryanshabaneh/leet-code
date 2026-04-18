@@ -51,5 +51,8 @@ class Solution:
                 # pop from the left of window map
                 window[s[l]] -= 1
 
+                if s[l] in countT and countT[s[l]] != window[s[l]]:
+                    break
+
         
 
