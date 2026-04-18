@@ -65,3 +65,33 @@ for r in range(len(s)):
 - At each `r`: finds the longest valid window ending at that position
 
 **Why it's O(n):** each character is added and removed from the set at most once.
+
+### 2. Variable-size window with a frequency constraint + maxFreq trick
+**Problem:** Longest Repeating Character Replacement
+
+Use when: you can make at most k changes to a window to make it uniform — find the longest such window.
+
+**Validity check:** `window_length - max_frequency <= k`
+- `max_frequency` = count of the most common char in the window
+- `window_length - max_frequency` = chars that need replacing
+
+```
+count = {}
+maxf = 0
+l = 0
+for r in range(len(s)):
+    count[s[r]] = 1 + count.get(s[r], 0)
+    maxf = max(maxf, count[s[r]])       # only update upward
+    if (r - l + 1) - maxf > k:         # window invalid: slide, don't shrink
+        count[s[l]] -= 1
+        l += 1
+    res = max(res, r - l + 1)
+```
+
+**Key insight — why maxf never decreases:**
+- `res = maxf + k` at best. k is fixed, so the only way to grow res is to grow maxf.
+- If maxf would drop after sliding, leave it — a lower maxf can't beat the current best.
+- This means the window either grows (maxf goes up) or slides at the same size (maxf stays).
+- Avoids calling `max(count.values())` each step — O(1) per iteration instead of O(26).
+
+**Why sliding by 1 is always enough:** the window was valid before r was added. Adding r grows it by 1, so it can only be off by 1. One slide restores it.

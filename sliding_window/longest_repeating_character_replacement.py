@@ -24,18 +24,23 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
 
-        maxf = 0
+        maxf = 0  # max frequency of any single char seen so far (never decreases)
         res = 0
         l = 0
         count = {}
 
         for r in range(len(s)):
-            maxf = max (maxf, count[s[r]])
             count[s[r]] = 1 + count.get(s[r], 0)
+            maxf = max(maxf, count[s[r]])  # only update upward — a lower maxf can't beat current res
+
+            # window_length - maxf = # of replacements needed to make window uniform
+            # if that exceeds k, slide the window (don't shrink — just shift)
             if (r - l + 1) - maxf > k:
                 count[s[l]] -= 1
                 l += 1
+
             res = max(res, r - l + 1)
+
         return res
     
 
