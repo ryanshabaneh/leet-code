@@ -42,6 +42,9 @@ class Solution:
             res = max(res, r - l + 1)
 
         return res
+
+# Time: O(n) — r and l each visit every character at most once.
+# Space: O(1) — count stores at most 26 uppercase letters.
     
 
 

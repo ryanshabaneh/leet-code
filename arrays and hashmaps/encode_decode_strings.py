@@ -114,4 +114,7 @@ Constraints:
 strs[i] contains any possible characters out of 256 valid ASCII characters.
 '''
 
+# Time: O(n) encode, O(n) decode — n = total characters across all strings.
+# Space: O(n) — output string / list proportional to total input size.
+
 #Re-solved count: 1

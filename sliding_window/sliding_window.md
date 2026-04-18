@@ -95,3 +95,42 @@ for r in range(len(s)):
 - Avoids calling `max(count.values())` each step — O(1) per iteration instead of O(26).
 
 **Why sliding by 1 is always enough:** the window was valid before r was added. Adding r grows it by 1, so it can only be off by 1. One slide restores it.
+
+### 3. Variable-size window — shrink when valid (find minimum)
+**Problem:** Minimum Window Substring
+
+Use when: find the *shortest* window satisfying a condition. Opposite of the longest pattern — here you expand until valid, then greedily shrink.
+
+**Validity:** `have == need`
+- `need` = number of distinct chars in t
+- `have` = number of those chars whose count is satisfied in the current window
+- A condition is satisfied when `window[c] >= countT[c]` (extras are fine)
+
+```
+countT = {}
+for c in t: countT[c] = 1 + countT.get(c, 0)
+
+have, need = 0, len(countT)
+res, resLen = [-1, -1], float("infinity")
+window = {}
+l = 0
+
+for r in range(len(s)):
+    window[s[r]] = 1 + window.get(s[r], 0)
+    if s[r] in countT and window[s[r]] == countT[s[r]]:
+        have += 1
+    while have == need:              # valid — shrink from left
+        if (r - l + 1) < resLen:
+            resLen, res = r - l + 1, [l, r]
+        window[s[l]] -= 1
+        if s[l] in countT and window[s[l]] < countT[s[l]]:
+            have -= 1                # condition broken
+        l += 1
+
+l, r = res
+return s[l:r+1] if resLen != float("infinity") else ""
+```
+
+**Key details:**
+- Use `<` not `!=` when checking if removing s[l] broke a condition — having extras (window > countT) is still valid, only going below breaks it.
+- `need = len(countT)` not `len(t)` — conditions are per distinct char, duplicates count toward frequency not condition count.
