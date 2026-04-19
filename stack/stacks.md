@@ -13,10 +13,13 @@ Use a stack when the problem involves **matching**, **nesting**, or **undoing** 
 
 ## When to reach for a stack
 
-- Matching brackets / parentheses
-- Evaluating or parsing expressions
-- "Previous greater/smaller element" problems
-- Undo/redo, browser back button, call stack analogies
+- **Parentheses / bracket problems** — you need to match an open bracket to its corresponding close bracket. The key is that the *most recently opened* bracket must be closed first. Two pointers fail here because brackets can be sequential, not just nested (e.g. `"()[]{}"` is valid but `l` and `r` point to non-matching chars).
+
+- **Nested problems (e.g. Basic Calculator)** — when you hit an inner expression, you need to pause the outer one, solve the inner one, then resume. A stack lets you save the outer context and come back to it — exactly like a call stack in recursion.
+
+- **Order of operations / manual evaluation** — when operators have precedence (e.g. `*` before `+`), a stack lets you defer lower-priority operations until higher-priority ones are resolved first.
+
+- **Undo / history problems** — any time you need to reverse a sequence of actions or look at what happened before, a stack naturally stores history in reverse order. The last action is always on top.
 
 ---
 
