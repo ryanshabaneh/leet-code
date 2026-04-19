@@ -29,20 +29,28 @@
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        closeToOpen = { 
-            ")" : "(", 
-            "]" : "[", 
-            "}" : "{" 
+        # map each closing bracket to its expected open bracket
+        closeToOpen = {
+            ")" : "(",
+            "]" : "[",
+            "}" : "{"
         }
-        stack = []
+        stack = []  # holds unmatched open brackets in order
 
         for c in s:
             if c in closeToOpen:
+                # closing bracket: top of stack must be the matching open bracket
+                # check stack is non-empty first to avoid index error on empty stack
                 if stack and closeToOpen[c] == stack[-1]:
                     stack.pop()
                 else:
                     return False
             else:
-                stack.append(c)
+                stack.append(c)  # open bracket: push and wait for its match
+
+        # if stack is empty, all brackets were matched; leftover open brackets = invalid
         return not stack
+
+# Time: O(n) — one pass through the string
+# Space: O(n) — worst case all open brackets (e.g. "(((((")
 
