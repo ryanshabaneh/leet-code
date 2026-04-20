@@ -31,7 +31,7 @@
 class Solution:
     def findMin(self, nums: list[int]) -> int:
         while l < r:
-             m = l + (r - l) // 2
+            m = l + (r - l) // 2
             if nums[m] < nums[r]:
                 r = m
             else:
