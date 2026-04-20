@@ -30,4 +30,6 @@
 
 class Solution:
     def findMin(self, nums: list[int]) -> int:
-        pass
+        while l < r:
+            pass
+
