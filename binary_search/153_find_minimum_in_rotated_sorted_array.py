@@ -32,14 +32,25 @@ class Solution:
     def findMin(self, nums: list[int]) -> int:
 
         l, r = 0, len(nums) - 1
+
+        # loop until l and r converge on the minimum
         while l < r:
             mid = (l + r) // 2
+
             if nums[mid] < nums[r]:
+                # mid is on the right (smaller) hill — drop already happened
+                # minimum is at mid or to the left
                 r = mid
             else:
-                l = mid + 1
+                # mid is on the left (bigger) hill — drop hasn't happened yet
+                # minimum is to the right of mid
+                l = mid + 1  # mid + 1 not mid, or l never moves and we loop forever
 
+        # l == r, both pointing at the minimum
         return nums[l]
+
+# Time: O(log n) — halving the search space each iteration
+# Space: O(1)
 
 
 
