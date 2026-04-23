@@ -29,24 +29,36 @@
 class Solution:
     def search(self, nums: list[int], target: int) -> int:
         l, r = 0, len(nums) - 1
-        while l <= r:
-            mid = (l + r) //2 
-            if t == nums[mid]:
+
+        while l <= r:  # l <= r because we're searching for a specific value — need to check when l == r
+            mid = (l + r) // 2
+
+            if target == nums[mid]:  # found it
                 return mid
 
-            # Left portion:
-            if nums[mid] > nums[l]:  #or maybe >=? not sure
-                if target > nums[mid] or target < len[l]::
+            # Determine which half is sorted by comparing mid to the left boundary.
+            # Use >= to handle the case where l == mid (single element on left).
+            if nums[mid] >= nums[l]:
+                # Left half [l...mid] is sorted
+                if target > nums[mid] or target < nums[l]:
+                    # Target is outside the left sorted half — must be in the right
                     l = mid + 1
                 else:
-                    r = mid - 1 
-            #right portion
+                    # Target is within the left sorted half
+                    r = mid - 1
             else:
+                # Right half [mid...r] is sorted
                 if target < nums[mid] or target > nums[r]:
+                    # Target is outside the right sorted half — must be in the left
                     r = mid - 1
                 else:
+                    # Target is within the right sorted half
                     l = mid + 1
-        return -1
+
+        return -1  # target not found
+
+# Time: O(log n) — halving the search space each iteration
+# Space: O(1)
                 
 
 
