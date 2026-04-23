@@ -44,5 +44,9 @@ class Solution:
             else:
                 if target < nums[mid]:
                     r = mid - 1
+                elif target > nums[r]:
+                    r = mid - 1
+                    
+
                 
 
