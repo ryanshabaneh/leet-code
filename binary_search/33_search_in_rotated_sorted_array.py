@@ -43,6 +43,6 @@ class Solution:
             #right portion
             else:
                 if target < nums[mid]:
-                    
+                    r = mid - 1
                 
 
