@@ -36,9 +36,9 @@ class Solution:
 
             # Left portion:
             if nums[mid] > nums[l]:  #or maybe >=? not sure
-                if target > nums[mid]:
-                    left = mid + 1
-                elift: 
-                    r = mid - 1
+                if target > nums[mid] or target < len[l]::
+                    l = mid + 1
+                else:
+                    r = mid - 1 
                 
 
