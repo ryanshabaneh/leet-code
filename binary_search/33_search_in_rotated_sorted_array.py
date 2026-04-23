@@ -33,3 +33,12 @@ class Solution:
             mid = (l + r) //2 
             if t == nums[mid]:
                 return mid
+
+            # Left portion:
+            if nums[mid] > nums[l]:  #or maybe >=? not sure
+                if target > nums[mid]:
+                    left = mid + 1
+                elift: 
+                    r = mid - 1
+                
+
