@@ -42,11 +42,10 @@ class Solution:
                     r = mid - 1 
             #right portion
             else:
-                if target < nums[mid]:
+                if target < nums[mid] or target > nums[r]:
                     r = mid - 1
-                elif target > nums[r]:
-                    r = mid - 1
-                    
+                
+
 
                 
 
