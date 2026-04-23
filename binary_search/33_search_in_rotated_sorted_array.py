@@ -30,4 +30,4 @@ class Solution:
     def search(self, nums: list[int], target: int) -> int:
         l, r = 0, len(nums) - 1
         while l <= r:
-            pass
+            mid = (l + r) //2 
