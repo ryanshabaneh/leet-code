@@ -30,9 +30,13 @@ class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         slow, fast = head, head
         while fast and fast.next:
-            pass
+            slow = slow.next
+            fast = fast.next.next
     
-    seen = set()
+'''
+Hashset solution
+
+seen = set()
 node = head
 while node:
     if node in seen:
@@ -40,5 +44,6 @@ while node:
     seen.add(node)
     node = node.next
 return False
+'''
 
 
