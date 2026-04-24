@@ -31,4 +31,14 @@ class Solution:
         slow, fast = head, head
         while fast and fast.next:
             pass
+    
+    seen = set()
+node = head
+while node:
+    if node in seen:
+        return True
+    seen.add(node)
+    node = node.next
+return False
+
 
