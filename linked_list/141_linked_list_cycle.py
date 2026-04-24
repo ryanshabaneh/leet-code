@@ -33,7 +33,7 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
             if fast == slow:
-                pass 
+                return True 
     
 '''
 Hashset solution
