@@ -15,12 +15,6 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        pass
 
-        prev, curr = None, head
-        
-        while curr != None:
-            nextt = curr.next
-            curr.next = prev
-            prev = curr
-            curr = nextt
-        return prev
+     
