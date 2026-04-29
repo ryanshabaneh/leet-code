@@ -53,6 +53,7 @@ class Solution:
             second = tmp
         
         #merge both the lists
+        first, second = head, prev
 
 # Why slow.next = None?
 # It's so the first half terminates. Without slow.next = None:
