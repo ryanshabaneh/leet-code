@@ -55,7 +55,11 @@ class Solution:
         #merge both the lists
         first, second = head, prev
         while second:
-            pass
+            tmp1, tmp2 = first.next, second.next
+            first.next = second
+            second.next = tmp1
+            first = tmp1
+            second = tmp2
 
 # Why slow.next = None?
 # It's so the first half terminates. Without slow.next = None:
