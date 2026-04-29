@@ -54,6 +54,8 @@ class Solution:
         
         #merge both the lists
         first, second = head, prev
+        while second:
+            pass
 
 # Why slow.next = None?
 # It's so the first half terminates. Without slow.next = None:
