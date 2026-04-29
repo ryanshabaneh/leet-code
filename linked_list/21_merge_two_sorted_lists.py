@@ -33,20 +33,34 @@ class ListNode:
 
 
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # Dummy is a placeholder node sitting in front of the real head.
+        # It lets the first append use the same code as every other append,
+        # avoiding a special case for "what's the head of the merged list?".
         dummy = ListNode()
-        tail = dumy  
 
+        # `tail` always points to the last node of the merged list so far.
+        # We attach new nodes via `tail.next` and advance `tail` forward.
+        tail = dummy
+
+        # Walk both lists in lockstep. On each iteration, pick the smaller
+        # front node and splice it onto the tail of the merged list.
         while l1 and l2:
             if l1.val < l2.val:
-                tail.next = l1 
-                l1 = l1.next
+                tail.next = l1     # splice l1's front node onto our list
+                l1 = l1.next       # advance l1 past the node we just took
             else:
                 tail.next = l2
                 l2 = l2.next
-            tail = tail.next
+            tail = tail.next       # tail moves forward to the node we just appended
+
+        # When the loop exits, AT LEAST one list is empty. Whatever's left
+        # in the other list is already sorted and already linked together,
+        # so we can attach the entire remaining chain in one shot.
         if l1:
             tail.next = l1
-        elif:
+        elif l2:
             tail.next = l2
+
+        # dummy.next is the actual head of the merged list (skip the placeholder).
         return dummy.next
