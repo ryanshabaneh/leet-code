@@ -36,10 +36,40 @@ class ListNode:
 
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
+
+        #find middle
         slow, fast = head, head.next 
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
         
-        
+        #reverse second half -> lists cant walk backwards
         second_haf = slow.next
+        prev, slow.next = None, None
+        while second:
+            tmp = second.next
+            second.next = prev
+            prevv = second
+            second = tmp
+        
+        #merge both the lists
+
+# Why slow.next = None?
+# It's so the first half terminates. Without slow.next = None:
+#
+# - First half from head: 1 -> 2 -> 3 -> 4 -> 5 -> 6 (the whole list! you never severed it)
+# - Second half from second: 4 -> 5 -> 6
+#
+# When you reverse the second half, node 4's .next gets set to None. So now:
+#
+# - From head: 1 -> 2 -> 3 -> 4 -> None (because 4's next is now None after reversal)
+# - From second (after reversal): 6 -> 5 -> 4 -> None
+#
+# When you merge, you'd weave: 1, 6, 2, 5, 3, 4, 4 — node 4 appears twice,
+# and the merge logic gets confused.
+#
+# By setting slow.next = None upfront, you cleanly split into:
+# - 1 -> 2 -> 3 -> None
+# - 4 -> 5 -> 6 -> None
+#
+# Two independent lists of equal-ish length, ready to merge.
