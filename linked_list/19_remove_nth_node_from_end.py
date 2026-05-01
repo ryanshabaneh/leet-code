@@ -48,6 +48,9 @@ class Solution:
         
         left.next = left.next.next
 
+        return dummy.next
+    
+
         # note when this exists we have L at the node before one we want deleted
 
 
