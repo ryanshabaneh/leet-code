@@ -45,6 +45,8 @@ class Solution:
         while right:
             right = right.next
             left = left.next
+        
+        left.next = left.next.next
 
         # note when this exists we have L at the node before one we want deleted
 
