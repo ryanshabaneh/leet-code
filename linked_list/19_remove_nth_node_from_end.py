@@ -36,21 +36,27 @@ class ListNode:
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head) 
+        # Pattern: two-pointer fixed window. We want left to land on the node
+        # BEFORE the target so we can splice via left.next = left.next.next.
+        # Dummy node lets us handle "remove the head" without a special case.
+        dummy = ListNode(0, head)
         left, right = dummy, head
 
+        # Offset right by n so the gap between left and right is n+1 nodes.
+        # When right walks off the end (None), left will be exactly one node
+        # before the target.
         for _ in range(n):
             right = right.next
 
+        # Walk both pointers in lockstep until right falls off.
         while right:
             right = right.next
             left = left.next
-        
+
+        # left is now the predecessor of the node to remove. Unlink it —
+        # Python's GC reclaims the orphaned node automatically.
         left.next = left.next.next
 
+        # Return dummy.next (not head) because head itself may have been removed.
         return dummy.next
-    
-
-        # note when this exists we have L at the node before one we want deleted
-
 
