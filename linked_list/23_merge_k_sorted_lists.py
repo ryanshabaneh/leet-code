@@ -46,7 +46,7 @@ class Solution:
                 #careful not to go out of bands say i is at my last element/head
                 if (i + 1) < len(lists):
                     l2 = lists[i+1]
-                
+                merged.append(mergeTwoLists(l1,l2))
                 
         
 
