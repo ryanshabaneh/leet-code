@@ -36,7 +36,13 @@ class ListNode:
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        pass
+        if not lists or len(lists) == 0:
+            return None
+        
+        while len(lists) > 1:
+            merged = []
+            
+        
 
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
