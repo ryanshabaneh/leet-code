@@ -45,7 +45,8 @@ class Solution:
                 l1 = lists[i]
                 #careful not to go out of bands say i is at my last element/head
                 if (i + 1) < len(lists):
-                    pass
+                    l2 = lists[i+1]
+                
                 
         
 
