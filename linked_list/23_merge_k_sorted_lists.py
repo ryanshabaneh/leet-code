@@ -43,7 +43,8 @@ class Solution:
             merged = []
             for i in range(0, len(lists), 2):
                 l1 = lists[i]
-                
+                #careful not to go out of bands say i is at my last element/head
+                l2 = lists[i + 1]
                 
         
 
