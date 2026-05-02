@@ -47,8 +47,7 @@ class Solution:
                 if (i + 1) < len(lists):
                     l2 = lists[i+1]
                 merged.append(mergeTwoLists(l1,l2))
-                
-        
+        return merged
 
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
