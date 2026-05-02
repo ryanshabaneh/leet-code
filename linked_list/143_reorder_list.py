@@ -44,12 +44,12 @@ class Solution:
             slow = slow.next
         
         #reverse second half -> lists cant walk backwards
-        second_haf = slow.next
+        second = slow.next
         prev, slow.next = None, None
         while second:
             tmp = second.next
             second.next = prev
-            prevv = second
+            prev = second
             second = tmp
         
         #merge both the lists
