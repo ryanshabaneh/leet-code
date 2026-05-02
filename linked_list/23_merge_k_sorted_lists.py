@@ -41,7 +41,10 @@ class Solution:
         
         while len(lists) > 1:
             merged = []
-            
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                
+                
         
 
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
