@@ -32,22 +32,23 @@ class TreeNode:
 
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        # base case: empty tree (or recursion hit a None child) — nothing to invert
         if not root:
             return None
+
+        # swap this node's children in place
         root.left, root.right = root.right, root.left
 
+        # recurse — each child knows how to invert its own subtree
+        # no need to capture returns: we mutate in place
         self.invertTree(root.left)
         self.invertTree(root.right)
-        if not root:
-        return None
 
-    root.left, root.right = root.right, root.left
+        return root
 
-    invertTree(root.left)
-    invertTree(root.right)
+# Approach: Recursion mirrors the tree's recursive structure.
+# At every node: swap left and right children, then trust recursion to fix the subtrees.
+#
+# Time:  O(n) — visit every node exactly once
+# Space: O(h) — recursion stack depth = tree height (h = log n balanced, n worst-case skewed)
 
-    return root
-
-        
-
-        
