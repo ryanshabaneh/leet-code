@@ -38,6 +38,15 @@ class Solution:
 
         self.invertTree(root.left)
         self.invertTree(root.right)
+        if not root:
+        return None
+
+    root.left, root.right = root.right, root.left
+
+    invertTree(root.left)
+    invertTree(root.right)
+
+    return root
 
         
 
