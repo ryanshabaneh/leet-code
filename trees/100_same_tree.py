@@ -36,11 +36,25 @@ class TreeNode:
 
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # base case 1: both empty → trivially the same
         if not (p or q):
             return True
+
+        # base case 2: exactly one is empty (we know not both from above)
+        # → structures differ, can't be same
         if not p or not q:
             return False
+
+        # base case 3: both exist but values differ → not same
         if p.val != q.val:
             return False
+
+        # recursive case: both exist with matching values, AND both subtree pairs match
+        # leap of faith: trust each recursive call to correctly answer its subtree pair
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        
+
+# Approach: Parallel DFS on two trees, comparing structure and values at each pair.
+# Each base case guards against either a trivial answer or a None-attribute crash on the next line.
+#
+# Time:  O(n) — n = min(|p|, |q|); we stop early on any mismatch
+# Space: O(h) — recursion stack = height of the smaller-or-equal tree
