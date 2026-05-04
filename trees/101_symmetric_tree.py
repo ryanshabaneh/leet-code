@@ -34,5 +34,10 @@ class Solution:
                 return True
             if not left or not right:
                 return False
+            if left.val != right.val:
+                return False
+            return dfs(left.left, right.right) and 
+            dfs(left.right, right.left)
+        return dfs(root.left, root.right)
 
     
