@@ -36,4 +36,11 @@ class TreeNode:
 
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        pass
+        if not (p or q):
+            return True
+        if p and not q:
+            return False
+        if not p and q:
+            return False
+        return self.isSameTree(p.left, q.left) and isSameTree(p.right, q.right)
+        
