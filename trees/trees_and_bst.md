@@ -244,7 +244,41 @@ def same(a, b):
     return a.val == b.val and same(a.left, b.left) and same(a.right, b.right)
 ```
 
-Examples: 100 Same Tree, 101 Symmetric Tree, 572 Subtree of Another Tree, 226 Invert (mirror of self).
+Examples: 100 Same Tree, 101 Symmetric Tree, 226 Invert (mirror of self).
+
+> **Symmetric tree twist:** mirror-checking recurses **diagonally** instead of straight-down — `helper(left.left, right.right)` and `helper(left.right, right.left)`. The criss-cross is what makes it "mirror" instead of "same."
+
+### 9. Search-then-match (two-layer recursion)
+*"Does X appear anywhere in this tree?" "How many subtrees satisfy property P?"*
+
+Two recursive functions working together:
+- **Outer** — walks every node in the big tree (DFS).
+- **Inner** — at each node, checks "does the subtree starting here satisfy the property?"
+
+The outer function calls the inner as a *helper* at each node. This is the first time you'll see two recursions in the same problem, and it can feel disorienting — but the pattern is just **"search using recursion #1, ask a yes/no question using recursion #2."**
+
+```python
+def isSubtree(root, subRoot):
+    if not root: return False                              # outer: ran out of tree to search
+    if isSameTree(root, subRoot): return True              # inner: hit at this node?
+    return isSubtree(root.left, subRoot) \
+        or isSubtree(root.right, subRoot)                  # outer: keep searching elsewhere
+
+def isSameTree(p, q):
+    # standard pattern from section 8
+    ...
+```
+
+**Mental model:** "find a needle in a haystack."
+- Outer recursion = flipping through every page of the book.
+- Inner recursion (the helper) = comparing a page to the paragraph.
+- You find a hit if the inner returns True at *any* page.
+
+**Complexity flavor:** outer visits `m` nodes, inner walks up to `n` nodes per call → `O(m * n)` time. Two recursion stacks → `O(m + n)` space worst-case.
+
+Examples: 572 Subtree of Another Tree, 250 Count Univalue Subtrees, 663 Equal Tree Partition.
+
+> **Why this pattern needs TWO functions:** the outer's job is *"search every starting point"* — it needs to recurse on `root.left` and `root.right`. The inner's job is *"compare two trees from a fixed pair of starting points"* — it needs to recurse on `(p.left, q.left)` and `(p.right, q.right)`. Different questions, different recursion shapes, can't fit in one function. You need a tool (helper) and a worker (outer) that uses the tool.
 
 ---
 

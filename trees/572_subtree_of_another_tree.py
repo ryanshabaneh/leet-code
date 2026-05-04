@@ -36,22 +36,36 @@ class TreeNode:
 
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        # base case: walked off the end of root without finding a match
         if not root:
-            return False    # ran out of trees to search!
-        if self.isSameTree(root, subroot):
+            return False
+
+        # is the subtree starting AT THIS node the same as subRoot?
+        if self.isSameTree(root, subRoot):
             return True
-        return isSubtree(root.left, subRoot) or isSubtree(root.right,subRoot)
 
+        # otherwise, search both subtrees — match might be deeper down
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
 
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # standard "are these two trees identical?" helper (same as problem #100)
+        if not (p or q):
+            return True
+        if not p or not q:
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 
-  def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-            if not (p or q):
-                return True
-            if not p or not q:
-                return False
-            if p.val != q.val:
-                return False
-            return isSameTree(p.left, q.left) and isSameTree(p.right, q.right)
-        
-
-   
+# Approach: Two-layer recursion.
+#   Outer (isSubtree): walks every node in `root`, asking at each one,
+#                      "is the subtree here identical to subRoot?"
+#   Inner (isSameTree): the standard pairwise-DFS comparison.
+# The first node where isSameTree returns True is a hit; if we exhaust root → False.
+#
+# Time:  O(m * n) — m = nodes in root, n = nodes in subRoot.
+#                   isSubtree visits each of m nodes, and at each one isSameTree
+#                   may walk up to n nodes before deciding.
+# Space: O(m + n) — two recursion stacks: isSubtree's stack is O(height of root),
+#                   and the isSameTree call inside it adds O(height of subRoot).
+#                   Worst case both trees are skewed → O(m + n).
