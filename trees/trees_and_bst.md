@@ -47,6 +47,104 @@ Three lines of mental work per problem:
 
 ---
 
+## The recursion playbook — what to do when you sit down with a new problem
+
+Tracing recursion mentally is a trap. Instead, run this 4-step workflow every single time. You'll never feel "lost" if you follow it.
+
+### Step 1 — State the contract (out loud or in a comment)
+
+> "Given [input], this function returns [output meaning]."
+
+For maxDepth: "Given a tree, this function returns the number of nodes on the longest path from root to leaf."
+
+For isSameTree: "Given two trees p and q, this function returns True if they're identical, False otherwise."
+
+The contract is a **promise** the function makes. Every recursive call obeys the same promise — including calls on subtrees.
+
+### Step 2 — Identify the trivial / base case(s)
+
+Two heuristics for finding base cases:
+
+**Heuristic A — "Trivial answer."**
+What's the smallest input where you can answer immediately without any work?
+- Empty tree depth = 0
+- Two empty trees same? → True
+- Empty tree symmetric? → True
+
+**Heuristic B — "What would crash on the next line?"**
+Look at the body of your function. Every `node.val`, `node.left`, etc. assumes `node` exists. Each potential `NoneType has no attribute ...` crash needs a base case to guard it.
+
+For two-tree problems (isSameTree, isSymmetric): typically 3 base cases —
+1. Both None → trivially same
+2. Exactly one None → can't be same (and would crash on `.val`)
+3. Both exist but values differ → not same (no need to recurse)
+
+### Step 3 — Write the recursive case as a *definition*
+
+**The single biggest mindset shift:** stop reading recursive code as instructions. Read it as a **definition**.
+
+Instead of:
+> "First do this, then call myself, then..."
+
+Read:
+> "The depth of a tree IS DEFINED AS 1 plus the max of its subtrees' depths."
+
+That's a *definition*, not a procedure. Same as `f(x) = x²` — you don't trace it, you state the relationship. Recursion is identical.
+
+The recursive case writes itself once you ask: **"Given my children's answers (which I trust), what's my answer?"**
+
+### Step 4 — Type it. Don't trace. Submit.
+
+Once Steps 1–3 are correct, the function is correct on **every** input. By induction. You don't need to trace it, you don't need to mentally run the call stack — the math has already proven it works.
+
+If you get nervous and want to check, ask only **two questions:**
+
+1. Is the function correct for the BASE case? (Empty tree → 0. Yes ✓)
+2. Is the function correct for ONE node, ASSUMING the recursive calls return correct answers? (At node 1: if maxDepth(node2) returns the right number and maxDepth(node3) returns the right number, does my code give the right answer for node 1? Yes ✓)
+
+If both are yes — submit. The math handles the rest.
+
+> **The replacement for "let me trace it":**
+> ❌ Bad question: "What does the call stack look like step by step?"
+> ✅ Good question: "Assuming the recursive call returns the correct answer for the smaller subtree, does my code produce the correct answer for THIS node?"
+
+---
+
+## Decision: do I `return` the recursive call?
+
+A common confusion. The rule:
+
+**Return / capture the recursive call when** your function's answer DEPENDS on what the recursive call gives back.
+```python
+return 1 + max(self.maxDepth(left), self.maxDepth(right))   # need depths to compute
+return same(p.left, q.left) and same(p.right, q.right)      # need bools to AND
+```
+
+**Don't capture the recursive call when** the recursion is just doing side-effect work (mutation) and you don't need its return value.
+```python
+self.invertTree(root.left)    # mutates in place, no return needed
+self.invertTree(root.right)
+return root
+```
+
+**Quick test:** ask "do I need INFORMATION from this recursive call to compute MY answer?"
+- Yes → return / capture it
+- No (it's just doing work elsewhere) → call it bare
+
+90% of tree problems return the call. Mutation problems (invert-tree style) are the exception.
+
+---
+
+## Practical drill habits (recursion clicks through reps, not understanding)
+
+- **Solve the SAME problem 3 times, days apart.** Re-do maxDepth tomorrow with a blank file. Then again the day after. Spaced repetition > new problems for cementing the template.
+- **Practice 1D recursion first if trees feel hard.** `factorial(n)`, `sum_list(arr)`, `reverse_str(s)`. Same mental model, half the complexity (one recursive call per frame instead of two).
+- **Read recursive code aloud, in plain English.** "If the tree is empty, return 0. Otherwise, return 1 plus the bigger of the depths of the left and right subtrees." That sentence is the function. Trust it like you'd trust the sentence.
+- **Use the template religiously.** Every tree problem is `base case + trust recursion + combine`. You don't have to invent recursion each time.
+- **When stuck, draw it on paper.** Boxes for each call, arrows for calls and returns. Once is enough — physical drawing forces slow thinking that screen-staring doesn't.
+
+---
+
 ## Three DFS traversal orders (memorize)
 
 DFS = "go deep first." The three orders differ only in *when you visit the current node* relative to its children.
