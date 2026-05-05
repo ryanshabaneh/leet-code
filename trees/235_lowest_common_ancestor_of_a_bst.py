@@ -37,14 +37,14 @@ class TreeNode:
 class Solution:
     def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> Optional[TreeNode]:
         
-        #my simplest case is if one of these are none right? 
+        #my simplest case is if one of these are none right? like if i get a empty root or p is none or q is none theres no ancestor
         if not root:
             pass
 
         if p.val > root.val and q.val > root.val:
-            return lowestCommonAncestor(root.left, p, q)
-        elif p.val < root.val and q.val < root.val:
             return lowestCommonAncestor(root.right, p, q)
+        elif p.val < root.val and q.val < root.val:
+            return lowestCommonAncestor(root.left, p, q)
         #case 3 they split meaning the root im at is their ancestor
         return root # i want to hit this because any 2 nodes will split at some point
         
