@@ -39,4 +39,9 @@ class Solution:
         if root.val > val:
             return self.searchBST(root.left, val)
         if root.val < val:
-            return self.searchBST(root.right, val) 
+            return self.searchBST(root.right, val)
+
+# Time:  O(h) — h = height of the tree. Each step uses the BST invariant to discard
+#               half the remaining tree, so we descend one path from root to leaf.
+#               Balanced BST: O(log n). Skewed (worst case): O(n).
+# Space: O(h) — recursion stack depth = path length from root to current node.
