@@ -43,4 +43,6 @@ class Solution:
 
         #case where I have both children
         return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
-    
+
+# Time:  O(n) — visit every node at most once
+# Space: O(h) — recursion stack = tree height (h = log n balanced, n worst-case skewed)
