@@ -42,9 +42,9 @@ class Solution:
             pass
 
         if p.val > root.val and q.val > root.val:
-            return lowestCommonAncestor(root.right, p, q)
+            return self.lowestCommonAncestor(root.right, p, q)
         elif p.val < root.val and q.val < root.val:
-            return lowestCommonAncestor(root.left, p, q)
+            return self.lowestCommonAncestor(root.left, p, q)
         #case 3 they split meaning the root im at is their ancestor
         return root # i want to hit this because any 2 nodes will split at some point
         
