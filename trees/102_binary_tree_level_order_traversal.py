@@ -35,4 +35,20 @@ class TreeNode:
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        pass
+        if not root:
+            return 
+        result = []
+
+        q = deque([root])
+        while q:
+            level = []
+            level_size = len(q)
+            
+            node = q.popleft()
+            print(node.val)
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+            
+
