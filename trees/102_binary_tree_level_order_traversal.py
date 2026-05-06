@@ -43,12 +43,16 @@ class Solution:
         while q:
             level = []
             level_size = len(q)
-            
-            node = q.popleft()
-            print(node.val)
-            if node.left:
-                q.append(node.left)
-            if node.right:
-                q.append(node.right)
+            for _ in range(level_size):
+                node = q.popleft()
+                level.append(node)
+                print(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+
+
+        
             
 
