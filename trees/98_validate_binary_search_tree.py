@@ -41,5 +41,5 @@ class Solution:
                 return True
             if not (low < node.val < high):
                 return False
-            valid(node.left, low, node.val)
+            valid(node.left, low, node.val) and valid(node.right, node.val, high)
      
