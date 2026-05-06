@@ -37,7 +37,7 @@ class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
 
         def valid(node, low, high):
-            if not root:
+            if not node:
                 return True
             if not (low < node.val < high):
                 return False
