@@ -35,13 +35,14 @@ class TreeNode:
 
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-
-        def valid(node, low, high):
+        def valid(node, lowLeft, highRight):
             if not node:
                 return True
-            if not (low < node.val < high):
+            if not (lowLeft < node.val < highRight):
                 return False
-            return valid(node.left, low, node.val) and valid(node.right, node.val, high)
-        return valid(root, float('-inft'), float('inf'))
-        
+            return valid(node.left, lowLeft, node.val) and valid(node.right, node.val, highRight)
+        return valid(root, float('-inf'), float('inf'))
+
      
+# Time:  O(n) — visit every node at most once
+# Space: O(h) — recursion stack = tree height (log n balanced, n skewed)
