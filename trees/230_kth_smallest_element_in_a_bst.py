@@ -34,16 +34,19 @@ class TreeNode:
 
 
 class Solution:
+
+    self.count = 0
+
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         
         if not root:
             return # not sure what the empty case is -1? maybe or 
         
-        kthSmallest(root.left)
-        count += 1
-        if k == count:
+        return self.kthSmallest(root.left, k)
+        self.count += 1
+        if k == self.count:
             return root.val
-        kthSmallest(root.right)
+        return self.kthSmallest(root.right, k)
     
 
 
