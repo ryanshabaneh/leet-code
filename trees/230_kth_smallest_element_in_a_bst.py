@@ -24,6 +24,7 @@
 
 from typing import Optional
 
+count = 0
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -34,4 +35,16 @@ class TreeNode:
 
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        pass
+        
+        if not root:
+            return # not sure what the empty case is -1? maybe or 
+        
+        kthSmallest(root.left)
+        count += 1
+        if k == count:
+            return root.val
+        kthSmallest(root.right)
+    
+
+
+
