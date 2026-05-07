@@ -47,5 +47,5 @@ class Solution:
         return arr[k-1]
     
 
-
+#Time O(n), Space O(n)
 
