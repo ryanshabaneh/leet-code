@@ -10,7 +10,7 @@
 # Rebuild the binary tree from the preorder and inorder traversals and return its root.
 #
 # Example 1:
-#   Input:  preorder = [1, 2, 3, 4], inorder = [2, 1, 3, 4]
+#   Input:  preorder = [1, 4, 7, 2, 3, 4,5 ], inorder = [7, 4, 2, 1, 3, 4,5]
 #   Output: [1, 2, 3, null, null, null, 4]
 #
 # Example 2:
@@ -41,7 +41,7 @@ class Solution:
         split = inorder.index(treeRoot) # so every index before this element is in left, every element after is in right
         curr = TreeNode(TreeRoot)
 
-        preorder.pop(1)
-        inorder.remove(treeRoot)
-        builtTree(preorder, inorder)
+        curr.left = self.buildTree(preorder[1: split + 1], inorder[:split])
+        curr.right = self.buildTree(preorder[split + 1:], inorder[split + 1: ])
+        return root
 
