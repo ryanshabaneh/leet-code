@@ -47,5 +47,7 @@ class Solution:
         return arr[k-1]
     
 
+#redo next time with counter optimization
+
 #Time O(n), Space O(n)
 
