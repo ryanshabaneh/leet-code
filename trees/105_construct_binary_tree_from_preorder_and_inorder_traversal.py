@@ -36,3 +36,12 @@ class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         if not (preorder and inorder):
             return None
+        
+        treeRoot = preorder[0] 
+        split = inorder.index(treeRoot) # so every index before this element is in left, every element after is in right
+        curr = TreeNode(TreeRoot)
+
+        preorder.pop(1)
+        inorder.remove(treeRoot)
+        builtTree(preorder, inorder)
+
