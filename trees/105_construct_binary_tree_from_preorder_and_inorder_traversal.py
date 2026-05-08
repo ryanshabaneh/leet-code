@@ -34,6 +34,5 @@ class TreeNode:
 
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        root = TreeNode(preorder[0])
-        def dfs(root):
-            preorder.de
+        if not (preorder and inorder):
+            return None
