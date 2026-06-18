@@ -34,4 +34,11 @@ class TreeNode:
 
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        pass
+        if not (preorder and inorder):
+            return None
+        root = preorder[0]
+        split = inorder.index(root)
+        curr = TreeNode(root)
+        curr.left = self.buildTree(preorder[1:split+1], inorder[:split])
+        curr.right = self.buildTree(preorder[split+1:], inorder[split+1:])
+        return curr
