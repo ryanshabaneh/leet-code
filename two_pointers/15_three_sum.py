@@ -86,7 +86,12 @@ Why l < r inside the duplicate skip?
     Without it, l could go past r and index out of bounds on an array of all
     the same value e.g. [0, 0, 0, 0].
 
-Time:  O(n²) — outer loop O(n), inner two-pointer O(n) per iteration
+Time:  O(n²) — outer loop O(n), inner two-pointer O(n) per iteration.
+       The dedup while inside the match branch doesn't add extra time:
+       l only moves rightward within a single inner pass, so the dedup
+       loop's total work amortizes into the same O(n) budget as the main
+       two-pointer movement. So the total per outer iteration is O(n),
+       not O(n) + O(n).
 Space: O(1) extra — sorting is in-place, only two pointer variables
 """
 

@@ -37,4 +37,9 @@ class TreeNode:
 
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        pass
+        def helper(node):
+            if not node:
+                return 0
+            left = max(0, helper(node.left))
+            right = max(0, helper(node.right))
+            
