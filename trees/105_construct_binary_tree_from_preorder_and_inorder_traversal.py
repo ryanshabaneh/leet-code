@@ -41,4 +41,4 @@ class Solution:
         curr = TreeNode(root)
         curr.left = self.buildTree(preorder[1:split+1], inorder[:split])
         curr.right = self.buildTree(preorder[split+1:], inorder[split+1:])
-        return curr
+        return 
