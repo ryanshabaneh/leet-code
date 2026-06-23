@@ -49,5 +49,7 @@ class Solution:
 
         res[0] = max(res[0], leftMax + root.val + rightMax)
 
+        return max(leftMax, rightMax) + root.val
+
         
         
