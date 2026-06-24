@@ -45,4 +45,6 @@ class Solution:
             res[0] = max(res[0],leftMax + rightMax)
 
             return 1 + max(leftMax, rightMax)
+        dfs(root)
+        return res[0]
 
