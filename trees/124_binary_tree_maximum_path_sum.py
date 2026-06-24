@@ -50,6 +50,9 @@ class Solution:
         res[0] = max(res[0], leftMax + root.val + rightMax)
 
         return max(leftMax, rightMax) + root.val
+       dfs(root)
+       return res[0]
 
         
-        
+        # 543. Diameter of Binary Tree — nearly identical structure (solve this too)
+
