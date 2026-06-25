@@ -58,3 +58,7 @@ class Codec:
             if x == "N":
                 return None
             node = TreeNode(x)
+            node.left = dfs()
+            node.right = dfs()
+            return node
+        return dfs
