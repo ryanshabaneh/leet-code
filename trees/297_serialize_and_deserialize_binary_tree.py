@@ -25,7 +25,7 @@
 #   -1000 <= Node.val <= 1000
 
 from typing import Optional
-
+from collections import deque
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -36,7 +36,25 @@ class TreeNode:
 
 class Codec:
     def serialize(self, root: Optional[TreeNode]) -> str:
-        pass
+        res = []
+        def dfs(root):
+            if not root:
+                res.append("N")
+                return
+            res.append(str(root.val))
+            dfs(root.left)
+            dfs(root.right)
+        dfs(root)
+        return ",".join(res)
+            
+
 
     def deserialize(self, data: str) -> Optional[TreeNode]:
-        pass
+        
+        vals = data.split(",")
+        d = deque(vals)
+        def dfs():
+            x = d.popleft()
+            if x == "N":
+                return None
+            node = TreeNode(x)
