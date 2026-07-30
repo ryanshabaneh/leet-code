@@ -31,6 +31,7 @@
 
 from typing import List
 
+# Scratch: backtracking — make a choice, recurse, undo the choice.
 
 class Solution:
     def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
