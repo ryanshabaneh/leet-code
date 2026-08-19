@@ -38,9 +38,6 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         visited = set()
         count = 0
-        row = len(grid)
-        col = len(grid[0])
-
         def dfs(r,c):
             if (r >= len(grid) or c >= len(grid[0]) or r < 0 or c < 0):
                 return
