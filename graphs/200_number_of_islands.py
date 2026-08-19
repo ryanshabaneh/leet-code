@@ -62,7 +62,9 @@ class Solution:
                    dfs(r,c)
         return count
 
-#O(mxn)
+#Time: O(m × n)
+#Space: O(m × n)
+#this was very fun new fav
     
 
 
