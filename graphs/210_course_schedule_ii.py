@@ -43,30 +43,31 @@ class Solution:
         path = set()
         res = []
 
-        prevMap = [i:[] for i in range(numCourses)]
+        prevMap = {i:[] for i in range(numCourses)}
         for crs, pre in prerequisites:
             prevMap[crs].append(pre)
         
         def dfs(crs):
             if crs in path:
-                return [] 
+                return False 
             if crs in visited:
-                return
-            if prevMap[crs] = []:
-                res.append[crs]
+                return True
+            if prevMap[crs] == []:
+                res.append(crs)
                 visited.add(crs)
-                return
+                return True
             path.add(crs)
             for pre in prevMap[crs]:
                 if not dfs(pre):
-                    return []
+                    return False
             path.remove(crs)
             res.append(crs)
             visited.add(crs)
             prevMap[crs] = []
+            return True
         
         for crs in range(numCourses):
-            if dfs(crs) == []:
+            if not dfs(crs):
                 return []
         
         return res
