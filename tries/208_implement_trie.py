@@ -63,10 +63,12 @@ class Trie:
             if not (char in cur.children):
                 return False
             cur = cur.children[char]
-        
+        '''
         if (cur.end == True):
             return True    
         return False
+        '''
+        return cur.end
 
 
 
