@@ -71,8 +71,8 @@ class Trie:
         return cur.end
 
     def startsWith(self, prefix: str) -> bool:
-         cur = self.root
-        for char in word:
+        cur = self.root
+        for char in prefix:
             if not (char in cur.children):
                 return False
             cur = cur.children[char]
