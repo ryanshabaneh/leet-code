@@ -58,7 +58,17 @@ class Trie:
         cur.end = True
 
     def search(self, word: str) -> bool:
-        pass
+        cur = self.root
+        for char in word:
+            if not (char in cur.children):
+                return False
+            cur = cur.children[char]
+        
+        if (cur.end == True):
+            return True    
+        return False
+
+
 
     def startsWith(self, prefix: str) -> bool:
         pass
