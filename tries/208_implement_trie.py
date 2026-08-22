@@ -70,7 +70,10 @@ class Trie:
         '''
         return cur.end
 
-
-
     def startsWith(self, prefix: str) -> bool:
-        pass
+         cur = self.root
+        for char in word:
+            if not (char in cur.children):
+                return False
+            cur = cur.children[char]
+        return True
