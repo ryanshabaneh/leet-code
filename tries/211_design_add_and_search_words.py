@@ -59,16 +59,20 @@ class WordDictionary:
 
     def search(self, word: str) -> bool:
 
-        def dfs(index, Node):
+        def dfs(j, root):
             cur = self.root
-            for i in range(len(word)):
+            for i in range(j, len(word)):
                 char = word[i]
 
                 if c == ".":
                     for child in cur.children.values():
-                        dfs(j, child)
+                        if dfs(i + 1, child):
+                            return True
+                    return False
 
                 else:
                     if c not in cur.children:
                         return False
                     cur = cur.children[char]
+            return cur.end
+        dfs(0, self.root)
