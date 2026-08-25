@@ -60,6 +60,7 @@ class WordDictionary:
     def search(self, word: str) -> bool:
 
         def dfs(j, root):
+            cur = root
             for i in range(j, len(word)):
                 char = word[i]
 
@@ -75,3 +76,4 @@ class WordDictionary:
                     cur = cur.children[char]
             return cur.end
         return dfs(0, self.root)
+
