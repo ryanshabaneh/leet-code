@@ -52,7 +52,7 @@ class WordDictionary:
     def addWord(self, word: str) -> None:
         cur = self.root
         for char in word:
-            if not in cur.children:
+            if char not in cur.children:
                 cur.children[char] = TrieNode()
             cur = children[char]
         cur.end = True
@@ -60,19 +60,18 @@ class WordDictionary:
     def search(self, word: str) -> bool:
 
         def dfs(j, root):
-            cur = self.root
             for i in range(j, len(word)):
                 char = word[i]
 
-                if c == ".":
+                if char == ".":
                     for child in cur.children.values():
                         if dfs(i + 1, child):
                             return True
                     return False
 
                 else:
-                    if c not in cur.children:
+                    if char not in cur.children:
                         return False
                     cur = cur.children[char]
             return cur.end
-        dfs(0, self.root)
+        return dfs(0, self.root)
