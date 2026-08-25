@@ -54,7 +54,7 @@ class WordDictionary:
         for char in word:
             if char not in cur.children:
                 cur.children[char] = TrieNode()
-            cur = children[char]
+            cur = cur.children[char]
         cur.end = True
 
     def search(self, word: str) -> bool:
