@@ -52,11 +52,9 @@ class WordDictionary:
     def addWord(self, word: str) -> None:
         cur = self.root
         for char in word:
-            if char in cur.children:
-                cur = children[char]
-            else:
-                cur.children[char] = TrieNode() 
-                cur = children[char]
+            if not in cur.children:
+                cur.children[char] = TrieNode()
+            cur = children[char]
         cur.end = True
 
     def search(self, word: str) -> bool:
