@@ -58,4 +58,17 @@ class WordDictionary:
         cur.end = True
 
     def search(self, word: str) -> bool:
-        pass
+
+        def dfs(index, Node):
+            cur = self.root
+            for i in range(len(word)):
+                char = word[i]
+
+                if c == ".":
+                    for child in cur.children.values():
+                        dfs(j, child)
+
+                else:
+                    if c not in cur.children:
+                        return False
+                    cur = cur.children[char]
